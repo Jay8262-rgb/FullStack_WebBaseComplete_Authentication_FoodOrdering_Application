@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Signup</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+
+    <script>
+        window.onload = function(){
+            const params = new URLSearchParams(window.location.search);
+
+            if(params.get("from") === "login")
+                showLogin();
+            
+            if(params.get("signup")==="success"){
+                alert("Signup successful! Please login.");
+            }
+        }
+
+        
+
+        function showLogin(){
+            document.getElementById("loginBox").style.display = "block";
+            document.getElementById("signupBox").style.display = "none";
+        }
+
+        function showSignup(){
+            document.getElementById("signupBox").style.display = "block";
+            document.getElementById("loginBox").style.display = "none";
+        }
+        function Password(id, icon){
+            const input = document.getElementById(id);
+
+            if(input.type === "password"){
+                input.type = "text";                 
+                icon.setAttribute("name","eye-off-outline"); 
+            }else{
+                input.type = "password";             
+                icon.setAttribute("name","eye-outline");
+            }
+        }
+        
+        function signUpCrediential(event){
+            event.preventDefault();
+            
+            const email = document.getElementById("signUpEmail").value;
+            const password = document.getElementById("signUpPassword").value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+            if(!emailPattern.test(email)){
+                alert("Invalid Email Formate..!! plz enter the valid email formate. e.g.-> rakesh253@gmail.com");
+                
+            }else  if(!passwordPattern.test(password)){
+                alert("plz enter the valid password..!!, <br>Must contain 8+ chars, uppercase, lowercase, number, special char </br>");
+            }else{
+                alert("signup is done go to login page..");
+                
+            }
+
+            
+
+        }
+    </script>
+</head>
+<body>
+
+    <div class="newContainer">
+        <h2>Helloo User, Welcome To Our Site With Full Authentication</h2>
+    </div>
+
+    <div class="container">
+
+        <!-- SIGNUP -->
+        <div class="box signup"  id="signupBox">
+            <h2>Sign Up</h2>
+
+            <form action="/signup" method="post">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" id="signUpEmail" required>
+                <input type="password" name="password" placeholder="Password" id="signUpPassword" required>
+                <button type="submit"  class="signup" onclick="signUpCrediential();" >Sign Up</button>
+
+                <ion-icon name="eye-outline"  class="SignUpEyeOpen" id="signUpeyeOn" onclick="Password('signUpPassword', this)"  ></ion-icon>
+                <ion-icon name="eye-off-outline" id="signUpEyeClose" class="SignupEyeClose" style="display: none;" onclick=eyeOn();></ion-icon>
+                <p class="login-link">Already have a account click here <a class="login-link-a" onclick="showLogin()" href="#">login</a></p>
+            </form>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="box login" id="loginBox" style="display: none;">
+            <h2>Login</h2>
+
+            <form action="/login" method="post">
+                <input type="email" name="email" placeholder="Email" id="loginEmail" required>
+                <input type="password" name="password" id="loginPassword" placeholder="Password" required>
+                <button class="login" type="submit">Login</button>
+
+                <ion-icon name="eye-outline" class="LoginEyeOn" id="LoginEyeOn"  onclick="Password('loginPassword', this)"></ion-icon>
+                <ion-icon name="eye-off-outline" id="eyeOff" class="LoginEyeOff" style="display: none;" onclick=eyeOn(); ></ion-icon>
+                <p class="login-link">Don't Have An Account <a class="login-link-a" href="#" onclick="showSignup()"> Signup</a> </p>
+
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -9,7 +9,10 @@ const { match } = require('node:assert');
 // const jwt = require("jsonwebtoken");
 
 //This is for database
-mongoose.connect("mongodb://127.0.0.1:27017/Authentication")
+mongoose.connect("mongodb+srv://jk825405jay_db_user:Y1b3QHc1VI7w2Uhw@cluster0.qduspak.mongodb.net/?appName=Cluster0")
+.then(() => {
+  console.log("MongoDB atlas connected")
+}).catch(err=> console.log(err));
 
 const trySchema = new mongoose.Schema({
     username: String,

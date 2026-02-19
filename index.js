@@ -1,28 +1,35 @@
 const express = require('express');
-const { Db } = require('mongodb');
+// const { Db } = require('mongodb');
 const app = express();
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { match } = require('node:assert');
+// const { match } = require('node:assert');
 // const jwt = require("jsonwebtoken");
 
 //This is for database
-mongoose.connect("mongodb+srv://jk825405jay_db_user:Y1b3QHc1VI7w2Uhw@cluster0.qduspak.mongodb.net/?appName=Cluster0")
+mongoose.connect("mongodb+srv://jk825405jay_db_user:Jay12345@cluster0.m1ouglq.mongodb.net/Second0")
 .then(() => {
-  console.log("MongoDB atlas connected")
-}).catch(err=> console.log(err));
+  console.log("MongoDB atlas connected");
+
+  app.listen(3000, () => {
+    console.log("Server started on port 3000");
+  });
+}).catch((err) => {
+    console.error("MongoDB connection error:", err);
+    process.exit(1);
+  });
 
 const trySchema = new mongoose.Schema({
     username: String,
     email: String,
     password: String
 });
-
+// jk825405jay_db_user
 const item = mongoose.model("second", trySchema);
-
-
+// BcYNFdeVLLimGock
+// mongodb+srv://jk825405jay_db_user:Y1b3QHc1VI7w2Uhw@cluster0.qduspak.mongodb.net/
 //App. uses
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -118,6 +125,3 @@ app.get('/home', (req, res)=>{
     res.render("home");
 });
 
-app.listen(3000, ()=>{
-    console.log('server running on localhost://3000');
-});

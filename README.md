@@ -135,7 +135,7 @@ README.md → GitHub description file
 
 <h2>⚙️ Installation & Setup</h2>
 1️⃣ Clone the repository
-git clone https://github.com/yourusername/secrets-app.git
+git clone https://github.com/Jay8262-rgb/FullStack_WebBaseComplete_Authentication_FoodOrdering_Application.git
 
 <h2>Go into the folder</h2>
 cd secrets-app

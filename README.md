@@ -138,7 +138,7 @@ README.md → GitHub description file
 git clone https://github.com/Jay8262-rgb/FullStack_WebBaseComplete_Authentication_FoodOrdering_Application.git
 
 <h2>Go into the folder</h2>
-cd <p></p>Your Own folder name</p>
+cd Your Own folder name
 
 <h2>Install dependencies</h2>
 npm install
